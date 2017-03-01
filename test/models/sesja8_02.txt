@@ -1,4 +1,4 @@
-const cell = {
+«const cell = {
   empty: "",
   o: "o",
   x: "x"
@@ -67,3 +67,4 @@ function hasAnyoneWon(patterns, board) {
 }
 
 console.log(hasAnyoneWon(patterns, board));
+»

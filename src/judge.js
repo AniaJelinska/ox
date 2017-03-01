@@ -1,4 +1,4 @@
-import {cell} from './cell';
+import {cell} from "./cell";
 
 export function isPatternAVictory (board, cellNumbers) {
   const firstNumber = cellNumbers[0];
@@ -7,7 +7,7 @@ export function isPatternAVictory (board, cellNumbers) {
   }
   const secondNumber = cellNumbers[1];
   if (board[firstNumber] !== board[secondNumber]) {
-   return false;
+    return false;
   }
   const thirdNumber = cellNumbers[2];
   if (board[firstNumber] !== board[thirdNumber]){
@@ -31,3 +31,13 @@ export const patterns = [
   [0, 4, 8],
   [2, 4, 6]
 ];
+
+export function hasAnyoneWon(patterns, board) {
+  let victory = false;
+  patterns.forEach(pattern => {
+    if (isPatternAVictory(board, pattern)) {
+      victory = true;
+    }
+  });
+  return victory;
+}

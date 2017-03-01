@@ -1,4 +1,4 @@
-import { cell } from './cell';
+import { cell } from "./cell";
 
 export function createBoard (){
   const board = [];

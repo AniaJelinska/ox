@@ -2,8 +2,9 @@
   "name": "ox",
   "version": "1.0.0",
   "description": "ox",
-  "main": "index.js",
+  "main": "lib/app.js",
   "scripts": {
+    "ox": "node lib/app.js",
     "build": "babel src -d lib",
     "test": "mocha test --compilers js:babel-register --recursive"
   },
@@ -22,5 +23,8 @@
     "chai": "^3.5.0",
     "mocha": "^3.2.0",
     "ramda": "^0.23.0"
+  },
+  "dependencies": {
+    "express": "^4.14.1"
   }
 }
