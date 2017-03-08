@@ -1,6 +1,7 @@
 import express from "express";
-import {createBoard, setCellValue} from "./board";
+import {createBoard, setCellValue, isEmptyCell} from "./board";
 import {cell} from "./cell";
+import {isOorX, isOnBoard} from "./validation";
 
 const server = express();
 let board = createBoard();
@@ -15,8 +16,10 @@ server.get("/newgame", (request, response) => {
   response.json({message: "new game created"});
 });
 
-server.get("/playermove/:cellvalue/:cellnumber", (request, response) => {
-  setCellValue(request.params.cellnumber, request.params.cellvalue, board);
+server.get("/makemove/:cellvalue/:cellnumber", (request, response) => {
+  if (isOorX (request.params.cellvalue) && isOnBoard (request.params.cellnumber, board) && isEmptyCell (request.params.cellnumber, board)) {
+    setCellValue(request.params.cellnumber, request.params.cellvalue, board);
+  }
   response.json(board);
 });
 

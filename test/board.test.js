@@ -2,6 +2,7 @@ import {createBoard, setCellValue} from "../src/board";
 import { expect } from "chai";
 import { isEmpty } from "ramda";
 import { cell } from "../src/cell";
+import { isEmptyCell} from "../src/board";
 
 describe("board", () => {
   const board = createBoard();
@@ -32,5 +33,17 @@ describe("setCellValue", () => {
     const board = createBoard();
     setCellValue(1, cell.x, board);
     expect(board[1]).to.equal(cell.x);
+  });
+});
+
+describe("isEmptyCell", () => {
+  it("given 1 and board with empty[1] should return true", () => {
+    const board = createBoard();
+    expect(isEmptyCell(1, board)).to.be.true;
+  });
+  it("given 1 and board with x[1] should return false", () => {
+    const board = createBoard();
+    setCellValue(1, cell.x, board);
+    expect(isEmptyCell(1, board)).to.be.false;
   });
 });

@@ -13,3 +13,10 @@ export function createBoard (){
 export function setCellValue (cellNumber, cellValue, board) {
   board[cellNumber] = cellValue;
 }
+
+export function isEmptyCell (cellNumber, board) {
+  if (board[cellNumber] === cell.empty) {
+    return true;
+  }
+  return false;
+}
