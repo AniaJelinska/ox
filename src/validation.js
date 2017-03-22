@@ -15,3 +15,9 @@ export function isOnBoard (input, board) {
   }
   return false;
 }
+export function isMoveDifferentThanLast (lastMove, currentMove) {
+  if (lastMove === currentMove) {
+    return false;
+  }
+  return true;
+}

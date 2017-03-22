@@ -1,6 +1,6 @@
 import { expect } from "chai";
 import { cell } from "../src/cell";
-import {isOorX, isOnBoard} from "../src/validation";
+import {isOorX, isOnBoard, isMoveDifferentThanLast} from "../src/validation";
 import {createBoard} from "../src/board";
 
 describe("validation", () => {
@@ -31,6 +31,12 @@ describe("validation", () => {
     it("given -1 should return false", () => {
       const board = createBoard ();
       expect(isOnBoard(-1, board)).to.be.false;
+    });
+    it("given x and x return false", () => {
+      expect(isMoveDifferentThanLast(cell.x, cell.x)).to.be.false;
+    });
+    it("given x and o return true", () => {
+      expect(isMoveDifferentThanLast(cell.x, cell.o)).to.be.true;
     });
   });
 });
