@@ -3,17 +3,26 @@ import {createBoard, setCellValue, isEmptyCell} from "./board";
 import {cell} from "./cell";
 import {isOorX, isOnBoard, isMoveDifferentThanLast} from "./validation";
 import {patterns, hasAnyoneWon} from "./judge";
+import {generateAllMoves, generateNextCellValue} from "./actionGenerator";
 
 const server = express();
 let board = createBoard();
 let lastMove = cell.empty;
 let victory = false;
+let possibleMoves = generateAllMoves(cell.x, board);
 
 server.get("/newgame", (request, response) => {
   board = createBoard();
   lastMove = cell.empty;
   victory = false;
-  response.json({board, lastMove, victory, message: "new game generated"});
+  possibleMoves = generateAllMoves(cell.x, board);
+  response.json({
+    board,
+    lastMove,
+    victory,
+    possibleMoves,
+    message: "new game generated"
+  });
 });
 
 server.get("/makemove/:cellvalue/:cellnumber", (request, response) => {
@@ -27,13 +36,25 @@ server.get("/makemove/:cellvalue/:cellnumber", (request, response) => {
     setCellValue(request.params.cellnumber, request.params.cellvalue, board);
     lastMove = request.params.cellvalue;
     victory = hasAnyoneWon (patterns, board);
+    const nextMove = generateNextCellValue(lastMove);
+    possibleMoves = generateAllMoves(nextMove, board);
   }
 
-  response.json({board, lastMove, victory});
+  response.json({
+    board,
+    lastMove,
+    victory,
+    possibleMoves
+  });
 });
 
 server.get("/getstate", (request, response) => {
-  response.json({board, lastMove, victory});
+  response.json({
+    board,
+    lastMove,
+    victory,
+    possibleMoves
+  });
 });
 
 server.listen(3000, () => {
