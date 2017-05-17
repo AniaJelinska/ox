@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import './App.css';
-import 'purecss/build/pure-min.css';
-import CellRow from './components/CellRow';
+import Cell from './components/Cell';
+import { cell } from './model/cell';
 
 class App extends Component {
   render() {
     return (
       <div>
-      <CellRow/>
-      <CellRow/>
-        <CellRow/>
+        <Cell value={cell.o}/>
+        <Cell value={cell.x}/>
+        <Cell value={cell.empty}/>
       </div>
     );
   }
