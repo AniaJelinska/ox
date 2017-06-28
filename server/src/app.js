@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import {createBoard, setCellValue, isEmptyCell} from "./board";
 import {cell} from "./cell";
 import {isOorX, isOnBoard, isMoveDifferentThanLast} from "./validation";
@@ -6,6 +7,7 @@ import {patterns, hasAnyoneWon} from "./judge";
 import {generateAllMoves, generateNextCellValue} from "./actionGenerator";
 
 const server = express();
+server.use(cors());
 let board = createBoard();
 let lastMove = cell.empty;
 let victory = false;
@@ -57,6 +59,6 @@ server.get("/getstate", (request, response) => {
   });
 });
 
-server.listen(3000, () => {
+server.listen(3001, () => {
   console.log("OX");
 });

@@ -4,6 +4,10 @@ var _express = require("express");
 
 var _express2 = _interopRequireDefault(_express);
 
+var _cors = require("cors");
+
+var _cors2 = _interopRequireDefault(_cors);
+
 var _board = require("./board");
 
 var _cell = require("./cell");
@@ -17,6 +21,7 @@ var _actionGenerator = require("./actionGenerator");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var server = (0, _express2.default)();
+server.use((0, _cors2.default)());
 var board = (0, _board.createBoard)();
 var lastMove = _cell.cell.empty;
 var victory = false;
@@ -64,6 +69,6 @@ server.get("/getstate", function (request, response) {
   });
 });
 
-server.listen(3000, function () {
+server.listen(3001, function () {
   console.log("OX");
 });

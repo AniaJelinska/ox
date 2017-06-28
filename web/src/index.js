@@ -7,6 +7,8 @@ import 'purecss/build/pure-min.css';
 
 import './index.css';
 
+controller.getSignal('application.initialize')();
+
 ReactDOM.render((
   <Container controller={controller}>
     <App />
